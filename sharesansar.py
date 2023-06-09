@@ -47,7 +47,7 @@ def scrapy(symbol):
         if 'disabled' in next_button.get_attribute('class'):
             # No next page, exit the loop
             break
-        break
+        
         # Click the next page button
         next_button.click()
 
@@ -71,8 +71,8 @@ def scrapy(symbol):
     # # Save the DataFrame to an Excel file
     # df.to_excel(f'{symbol}.xlsx', index=False)
 
-print(scrapy('NICL'))
+# print(scrapy('NICL'))
 
-# for  s in SYMBOLS:
-#     print(s['symbol'],"\n")
-#     scrapy(s[)    
+for  s in SYMBOLS:
+    print(s['symbol'],"\n")
+    scrapy(s['symbol'])    
