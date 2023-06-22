@@ -102,15 +102,15 @@ class Nepse:
         
         self.token_url            = "https://www.nepalstock.com/api/authenticate/prove"
         
-        self.price_volume_url     = "https://www.nepalstock.com.np/api/nots/securityDailyTradeStat/58"
-        self.summary_url          = "https://www.nepalstock.com.np/api/nots/market-summary/"
-        self.top_ten_scrips_url   = "https://www.nepalstock.com.np/api/nots/top-ten/trade-qty"
-        self.supply_demand_url    = "https://www.nepalstock.com.np/api/nots/nepse-data/supplydemand"
-        self.turnover_url         = "https://www.nepalstock.com.np/api/nots/top-ten/turnover"
-        self.top_gainers_url      = "https://www.nepalstock.com.np/api/nots/top-ten/top-gainer"
-        self.top_losers_url       = "https://www.nepalstock.com.np/api/nots/top-ten/top-loser"
-        self.nepse_open_url       = "https://www.nepalstock.com.np/api/nots/nepse-data/market-open"
-        self.nepse_index_url      = "https://www.nepalstock.com.np/api/nots/nepse-index"
+        self.price_volume_url     = "https://www.nepalstock.com/api/nots/securityDailyTradeStat/58"
+        self.summary_url          = "https://www.nepalstock.com/api/nots/market-summary/"
+        self.top_ten_scrips_url   = "https://www.nepalstock.com/api/nots/top-ten/trade-qty"
+        self.supply_demand_url    = "https://www.nepalstock.com/api/nots/nepse-data/supplydemand"
+        self.turnover_url         = "https://www.nepalstock.com/api/nots/top-ten/turnover"
+        self.top_gainers_url      = "https://www.nepalstock.com/api/nots/top-ten/top-gainer"
+        self.top_losers_url       = "https://www.nepalstock.com/api/nots/top-ten/top-loser"
+        self.nepse_open_url       = "https://www.nepalstock.com/api/nots/nepse-data/market-open"
+        self.nepse_index_url      = "https://www.nepalstock.com/api/nots/nepse-index"
         self.nepse_subindices_url = "https://www.nepalstock.com/api/nots"
         
         self.headers= {
@@ -188,7 +188,7 @@ class Nepse:
 ####################################Usage####################################
 nepse = Nepse()
 
-nepse.getPriceVolume()
+# nepse.getPriceVolume()
 # nepse.getSummary()
 # nepse.getTopTenScrips()
 # nepse.getSupplyDemand()
@@ -197,3 +197,4 @@ nepse.getPriceVolume()
 # nepse.isNepseOpen()
 # nepse.getNepseIndex()
 # nepse.getNepseSubIndices()
+print(nepse.getValidToken())
