@@ -3,14 +3,18 @@ from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
+from selenium.webdriver.chrome.options import Options
 from bs4 import BeautifulSoup
 from constraint import SYMBOLS
 import os
 
 def scrapy(symbol):
     try:
+        chrome_options = Options()
+        chrome_options.add_argument("--headless")  # Run Chrome in headless mode
+
         # Set up WebDriver and open the website
-        driver = webdriver.Chrome(executable_path='/path/to/chromedriver')
+        driver = webdriver.Chrome(executable_path='/path/to/chromedriver',options=chrome_options)
         driver.get(f'https://www.sharesansar.com/company/{symbol}')
 
         # Wait for the "Price History" tab to be clickable and click it
