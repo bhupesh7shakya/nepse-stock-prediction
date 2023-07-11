@@ -1,77 +1,84 @@
-# w="world"
-# print(f'''hello {w}''')
+# import numpy as np
+# import pandas as pd
+# from sklearn.preprocessing import MinMaxScaler
+# from keras.models import load_model
 
-my_dic={
-    'name':'bhupesh',
-    'password':"password",
-    "age":20,
-    'name':'nitish'
-    
-}
-# print(my_dic['name'][-1])
+# # Load the saved model
+# model = load_model('E:/scraper/nabil.h5')
 
+# # Assuming you have the test data in the variable 'x_test'
+# df= pd.read_excel('./price_history/NABIL.xlsx')
+# df=df.dropna()
+# closing_price=df.close.str.replace(',', '').astype(float)
 
-# a=[1,2,3,4,5,4]
-
-# print(a[::-1])
-# print(a.index(len(a)-a[::-1].index(5)))
-
-
-# integer=12
-# print(integer)
-# print(float(integer))
-# data=str(integer)+"t"
-# print(int(data))
+# date=df.date
+# data_training=pd.DataFrame(closing_price[0:int(len(df)*0.70)])
+# data_testing=pd.DataFrame(closing_price[int(len(df)*0.70):int(len(df))])
 
 
-# operators
 
-a=10
-b=True
+# # scaling dta
+# from sklearn.preprocessing import MinMaxScaler
 
-c=a==True
-
-# print(b)
-# addition
-
-fruits=[
-    {'name':'apple'},
-]
-
-# print(range(0,10))
+# scaler= MinMaxScaler(feature_range=(0,1))
+# past_100_days=data_training.tail(100)
+# final_df=past_100_days._append(data_testing,ignore_index=True)
+# input_data=scaler.fit_transform(final_df)
 
 
-students=[
-    {
-    "name":"bhupesh",
-    "email":"bhupesh7shakya@gmail.com"
-},  
-    {
-    "name":"bhupesh",
-    "email":"bhupesh7shakya@gmail.com"
-},  
-    {
-    "name":"bhupesh",
-    "email":"bhupesh7shakya@gmail.com"
-},  
-    {
-    "name":"bhupesh",
-    "email":"bhupesh7shakya@gmail.com"
-},  
-]
+
+# x_test =[]
+# y_test=[]
+
+# for i in range(100,input_data.shape[0],3):
+#   x_test.append(input_data[i-100:i])
+#   y_test.append(input_data[i,0])
+
+# x_test,y_test =np.array(x_test),np.array(y_test )
+
+# y_predicted = model.predict(x_test)
+
+# y_predicted = scaler.inverse_transform(y_predicted)
 
 
-# for student in students:
-#     print(f"{student['name']} + and email is {student['email']})"
+# print(y_predicted.shape[0])
 
-# i = 1
-# while i < 6:
-#   print(i)
-#   i += 1
+import numpy as np
+import pandas as pd
+from sklearn.preprocessing import MinMaxScaler
+from keras.models import load_model
+# from matplotlib import 
+# Load the saved model
+model = load_model('E:/scraper/nabil.h5')
 
-def hello_world():
-    print('hello world')
-    hello_world()
-    
-    
-hello_world()
+# Assuming you have the test data in the variable 'x_test'
+df = pd.read_excel('./price_history/NABIL.xlsx')
+df = df.dropna()
+closing_price = df.close.str.replace(',', '').astype(float)
+
+date = df.date
+data_training = pd.DataFrame(closing_price[0:int(len(df)*0.70)])
+data_testing = pd.DataFrame(closing_price[int(len(df)*0.70):int(len(df))])
+
+# Scaling data
+scaler = MinMaxScaler(feature_range=(0,1))
+past_100_days = data_training.tail(100)
+final_df = past_100_days._append(data_testing, ignore_index=True)
+input_data = scaler.fit_transform(final_df)
+
+x_test = []
+y_test = []
+
+for i in range(100, input_data.shape[0], 3):
+    x_test.append(input_data[i-100:i])
+    y_test.append(input_data[i:i+3, 0])
+
+x_test, y_test = np.array(x_test), np.array(y_test)
+
+y_predicted = model.predict(x_test)
+y_predicted = scaler.inverse_transform(y_predicted)
+
+num_predictions = y_predicted.shape[0]
+
+print("Number of predictions:", num_predictions)
+print(y_predicted)
