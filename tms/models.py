@@ -10,7 +10,7 @@ class Company(models.Model):
         return self.symbol
     
 class PriceHistory(models.Model):
-    company = models.ForeignKey(Company, on_delete=models.CASCADE)
+    company = models.ForeignKey(Company, on_delete=models.CASCADE,related_name="price_histories")
     open_price = models.DecimalField(max_digits=10, decimal_places=2)
     close_price = models.DecimalField(max_digits=10, decimal_places=2)
     low_price = models.DecimalField(max_digits=10, decimal_places=2)
@@ -25,7 +25,8 @@ class Announcement(models.Model):
     date = models.DateTimeField(auto_now=True)
     title = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
-    
+    company = models.ForeignKey(Company, on_delete=models.CASCADE,related_name="announcements")
+
     def __str__(self):
         return self.title
     
@@ -33,7 +34,7 @@ class News(models.Model):
     date = models.DateTimeField(auto_now=True)
     title = models.CharField(max_length=255)
     description = models.TextField(null=True, blank=True)
-    
+    company = models.ForeignKey(Company, on_delete=models.CASCADE,related_name="news")
     def __str__(self):
         return self.title
     
