@@ -1,3 +1,5 @@
+from djoser.serializers import UserCreateSerializer as DjoserUserCreateSerializer
+from django.contrib.auth import get_user_model
 from rest_framework import serializers
 from .models import *
 
@@ -29,3 +31,32 @@ class CompanySerializer(serializers.ModelSerializer):
     class Meta:
         model=Company
         fields='__all__'
+        
+        
+
+class OrderSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Order
+        fields = '__all__'
+
+class TransactionSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Transaction
+        fields = '__all__'
+
+
+
+User = get_user_model()
+
+class UserCreateSerializer(DjoserUserCreateSerializer):
+    username = serializers.CharField(required=True)
+
+    class Meta(DjoserUserCreateSerializer.Meta):
+        model = User
+        fields = ('email', 'username', 'password', 'password2')
+        
+        
+class PortfolioSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Portfolio
+        fields = '__all__'

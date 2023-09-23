@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'djoser',
     'rest_framework',
     'rest_framework.authtoken',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
@@ -131,4 +132,24 @@ REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework.authentication.TokenAuthentication',
     ),
+    
 }
+
+DJOSER = {
+    # 'LOGIN_FIELD': 'email',  # Set the login field to 'email'
+    'USER_CREATE_PASSWORD_RETYPE': True,  # Require password confirmation during registration
+    # 'SEND_ACTIVATION_EMAIL': True,
+    
+    # 'SERIALIZERS': {
+    #     'user_create': 'tms.serializers.UserCreateSerializer',  # Use a custom serializer for user creation
+    # }
+
+}
+
+
+EMAIL_BACKEND = "django.core.mail.backends.smtp.EmailBackend"
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = "thetestingu@gmail.com"
+EMAIL_HOST_PASSWORD = "izaqeqcmamxlbogo"

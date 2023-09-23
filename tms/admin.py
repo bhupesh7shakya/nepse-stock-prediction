@@ -1,5 +1,5 @@
 from django.contrib import admin
-from .models import Company, PriceHistory, Announcement, News, Fund, Payment, Purchase, Sold
+from .models import Company, PriceHistory, Announcement, News, Fund, Payment,Portfolio,Order,Transaction
 
 @admin.register(Company)
 class CompanyAdmin(admin.ModelAdmin):
@@ -25,10 +25,24 @@ class FundAdmin(admin.ModelAdmin):
 class PaymentAdmin(admin.ModelAdmin):
     list_display = ('amount', 'user')
 
-@admin.register(Purchase)
-class PurchaseAdmin(admin.ModelAdmin):
-    list_display = ('company', 'qty', 'buy_price', 'user')
 
-@admin.register(Sold)
-class SoldAdmin(admin.ModelAdmin):
-    list_display = ('company', 'qty', 'sold_price', 'user')
+
+# @admin.register(Sold)
+# class SoldAdmin(admin.ModelAdmin):
+#     list_display = ('company', 'qty', 'price', 'user')
+@admin.register(Order)
+class OrderAdmin(admin.ModelAdmin):
+    list_display = ('company', 'qty', 'price', 'user', 'order_type')
+    list_filter = ('order_type',)
+    search_fields = ('company__name', 'user__username')
+
+@admin.register(Transaction)
+class TransactionAdmin(admin.ModelAdmin):
+    list_display = ('user', 'company', 'quantity', 'price', 'timestamp', 'transaction_type')
+    list_filter = ('transaction_type',)
+    search_fields = ('company__name', 'user__username')
+
+@admin.register(Portfolio)
+class PortfolioAdmin(admin.ModelAdmin):
+    list_display = ('user', 'company', 'quantity')
+    search_fields = ('user__username', 'company__name')
