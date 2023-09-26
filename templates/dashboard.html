@@ -1,0 +1,26 @@
+{% extends 'main.html' %}
+ {% block title %}Dashboard{% endblock title %} 
+ {%block body %} {% block style %}
+<style>
+  .iframe-container {
+    position: relative;
+    width: 100%; /* Adjust this to your desired width */
+    height: 100%; /* Adjust this to your desired height */
+    overflow: hidden;
+}
+.iframe-container iframe {
+  position: absolute;
+  
+}
+</style>
+{% endblock style %}
+<div class="iframe-container">
+  <iframe
+    id="embed"
+    src="https://www.sharesansar.com/live-trading"
+    width="100%"
+    height="100%"
+  ></iframe>
+</div>
+
+{% endblock body %}

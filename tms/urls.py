@@ -24,5 +24,9 @@ urlpatterns = [
     path('orders/', views.OrderCreateView.as_view(),name='orders'),
     path('portfolio/', views.PortfolioView.as_view(),name='portfolio'),
     
-
+    path('login/',views.LoginView.as_view(),name='login/'),
+    path('register/',views.RegisterView.as_view(),name='login/'),
+    path('dashboard/',views.dashboard,name='dashboard/'),
+    
+    path('load_fund/',views.Load_fund.as_view(),name='load_fund'),
 ]
